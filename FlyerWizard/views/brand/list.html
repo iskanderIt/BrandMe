@@ -1,0 +1,26 @@
+﻿<!-- views/brands/list.html -->
+<div class="col-lg-12" ui-view>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-right">
+                <button ng-click="edit(brandId)" type="button" class="btn btn-success" title="Add New">Add New</button>
+                <p></p>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-repeat="brand in brands" class="col-sm-6 col-md-4 text-left">
+                <div class="thumbnail">
+                    <a ui-sref="artwork({pid : brand['id']})"><img ng-src="{{brand['logoSrc']}}" alt="{{brand['name']}}" width="500" height="300" /></a>
+
+                    <div class="caption">
+                        <h3>{{brand['name']}}</h3>
+                        <p>{{brand['description']}}</p>
+                        <a ui-sref="brand.edit({id : brand['id']})" class="btn btn-primary" role="button">Edit</a>
+                        <a ui-sref="artwork({pid : brand['id']})" class="btn btn-default" role="button">List Artworks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

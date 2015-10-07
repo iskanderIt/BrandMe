@@ -1,0 +1,121 @@
+<!doctype html>
+<html ng-app="FlyerWizard" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FlyerWizard</title>
+    <!-- JQuery -->
+    <script src="assets/js/app/jquery.min.js"></script>
+    <script src="assets/js/app/jquery-ui.min.js"></script>
+
+    <!-- AngularJS -->
+    <script src="assets/js/app/angular.min.js"></script>
+    <script src="assets/js/modules/angular-auth-module.js"></script>
+    <script src="assets/js/modules/angular-file-upload.js"></script>
+    <script src="assets/js/modules/angular-ui-router.min.js"></script>
+    <script src="assets/js/modules/angular-dragdrop.min.js"></script>
+    <script src="assets/js/modules/ngDialog.min.js"></script>
+
+    <script src="assets/js/app/app.js"></script>
+
+    <!-- Bootstrap JS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="assets/js/app/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/default.css" />
+    <link rel="stylesheet" href="assets/css/ngDialog.min.css" />
+    <link rel="stylesheet" href="assets/css/ngDialog-theme-default.min.css" />
+
+    <style>
+        .my-drop-zone {
+            border: dotted 3px lightgray;
+        }
+
+        .nv-file-over {
+            border: dotted 3px red;
+        }
+        /* Default class applied to drop zones on over */
+        .another-file-over-class {
+            border: dotted 3px green;
+        }
+
+    </style>
+</head>
+<body ng-controller="AppController">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/brandify">Brandify</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a ui-sref="user">Dashboard</a></li>
+                            </ul>
+                            <!-- form class="navbar-form navbar-left" role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                </div>
+                                <button type="submit" class="btn btn-default">Search</button>
+                            </form -->
+                            <ul class="nav navbar-nav navbar-right" ng-controller="LoginController">
+                                <li><a ui-sref="user.setting">Settings</a></li>
+                                <li class="dropdown" ng-show="isLogged()">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{currentUser.alias}}<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a ui-sref="user.profile">Profile</a></li>
+                                        <li><a ui-sref="user.billing">Billing</a></li>
+                                        <li class="divider"></li>
+                                        <li><a ng-click="logout()">Log Out</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown" ng-hide="isLogged()">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu" style="min-width:500px;">
+                                        <li>
+                                            <form class="form-inline" style="padding:10px;  text-align: right;">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="userEmail">Email address</label>
+                                                    <input type="email" class="form-control" id="userEmail" placeholder="Enter email" ng-model="credentials.username">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="userKey">Password</label>
+                                                    <input type="password" class="form-control" id="userKey" placeholder="Password" ng-model="credentials.password">
+                                                </div>
+                                                <button ng-click="login(credentials)" type="submit" class="btn btn-success">Login</button>
+                                            </form>
+                                            <form class="" style="padding:10px;">
+                                                <div class="form-group" style="text-align: right;">
+                                                    <label for="registerInput">Not Already Registered?</label>
+                                                    <button ng-click="register(user)" id="registerInput" type="submit" class="btn btn-info">Register</button>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+        </div>
+        <div ui-view class="row"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+﻿<div ui-view class="col-lg-12">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-right">
+                <button type="submit" ng-click="back()" class="btn btn-warning">Go Back</button>
+                <button type="submit" ng-click="save()" class="btn btn-success">Save</button>
+                <button type="submit" ng-click="delete()" class="btn btn-danger">Delete</button>
+                <p></p>
+            </div>
+        </div>
+        <div class="row">
+            <div ui-view class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-12" ng-controller="ToolbarController">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="btn-toolbar" role="toolbar" aria-label="...">
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <button ng-click="open()" type="button" class="btn btn-default" title="open library"><i class="glyphicon glyphicon-folder-open"></i></button>
+                                        <button ng-click="import()" type="button" class="btn btn-default" title="import"><i class="glyphicon glyphicon-cloud-upload"></i></button>
+                                        <button ng-click="export()" type="button" class="btn btn-default" title="export"><i class="glyphicon glyphicon-cloud-download"></i></button>
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <button ng-click="addimage()" type="button" class="btn btn-default" title="add image layer"><i class="glyphicon glyphicon-picture"></i></button>
+                                        <button ng-click="addtext()" type="button" class="btn btn-default" title="new text layer"><i class="glyphicon glyphicon-font"></i></button>
+                                        <button ng-click="refresh()" type="button" class="btn btn-default" title="refresh"><i class="glyphicon glyphicon-refresh"></i></button>
+                                        <button ng-click="preview()" type="button" class="btn btn-default" title="preview"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="canvas-container" ng-controller="CanvasController" style="overflow:auto">
+                            <div ng-repeat="layer in currentArtwork.layers" style="position:relative;">
+
+                                <div data-drag="true"
+                                     jqyoui-draggable="{index: {{$index}},onStop:'updateLayer(layer)'}"
+                                     ng-click="selectLayer($event,layer)"
+                                     ng-show="layer.isVisible"
+                                     style="font:{{layer.font_size}} {{layer.font_family}}; left:{{layer.x}}px; top:{{layer.y}}px; z-index:{{layer.z}};width:{{layer.width}}px; height:{{layer.height}}px"
+                                     class="ng-hide itemcanvas floatitem"
+                                     data-position-x="{{layer.x}}"
+                                     data-position-y="{{layer.y}}"
+                                     data-position-z="{{layer.z}}"
+                                     data-type="{{layer.type}}"
+                                     data-font-family="{{layer.font_family}}"
+                                     data-font-size="{{layer.font_size}}"
+                                     data-font-text="{{layer.text}}"
+                                     data-image-src="{{layer.src}}">
+                                    <img ng-if="layer.type == 'image'" ng-src="{{layer.src}}" style="width:100%; height:100%;" />
+                                    <input ng-if="layer.type == 'text'" size="{{layer.size}}" type="text" style="background-color:transparent; border:0;" ng-model="layer.text" ng-change="changeSize(layer)" value="{{layer.text}}" />
+                                </div>
+                            </div>
+                            <canvas jqyoui-droppable data-drop="true" ng-click="detect()" id="canvas" width="100" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Artwork view</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="artworkname">Artwork Name</label>
+                                <input id="artworkname" type="text" class="form-control" placeholder="Name" ng-model="currentArtwork.name">
+                            </div>
+                            <div class="form-group">
+                                <label for="artworktype">Artwork Type</label>
+                                <select class="form-control" ng-change="changeType()" ng-model="currentArtwork.type" ng-options="t.name for t in installedTypes track by t.name"></select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" ng-controller="LayerController">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12"><h2>Layers view</h2></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-1 text-left"><i class="glyphicon glyphicon-eye-open"></i></div>
+                                <div class="col-lg-1 text-left"><span>id</span></div>
+                                <div class="col-lg-10 text-left"><span>label</span></div>
+                            </div>
+                        </div>
+                        <div class="container-fluid" ng-repeat="layer in currentArtwork.layers">
+                            <div class="row">
+                                <div class="col-lg-1 text-left"><input type="checkbox" ng-click="toggleItem(layer)" /></div>
+                                <div class="col-lg-1 text-left"><span>{{layer.id}}</span></div>
+                                <div class="col-lg-10 text-left"><span>{{layer.text}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" ng-controller="InfoController">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12"><h3>Property view</h3></div>
+                            </div>
+                            <div class="row">
+                                <div class="container-fluid" ng-repeat="(key, value) in selectedLayer.properties">
+                                    <div class="row">
+                                        <div class="col-lg-2">{{key}}</div>
+                                        <div class="col-lg-10"><input type="text" ng-model="selectedLayer.properties[key]" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

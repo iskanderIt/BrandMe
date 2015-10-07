@@ -1,0 +1,21 @@
+﻿<div class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="userEmail">Email address</label>
+            <input type="email" class="form-control" id="userEmail" placeholder="Enter email" ng-model="credentials.username">
+        </div>
+        <div class="form-group">
+            <label for="userKey">Password</label>
+            <input type="password" class="form-control" id="userKey" placeholder="Password" ng-model="credentials.password">
+        </div>
+        <div class="form-group" style="text-align:right;">
+            <button ng-click="login(credentials)" type="submit" class="btn btn-success">Login</button>
+        </div>
+    </form>
+    <form>
+        <div class="form-group" style="text-align:right;">
+            <label for="registerInput">Not Already Registered?</label>
+            <button ng-click="register(user)" id="registerInput" type="submit" class="btn btn-info">Register</button>
+        </div>
+    </form>
+</div>

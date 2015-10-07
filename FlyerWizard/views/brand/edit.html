@@ -1,0 +1,42 @@
+﻿<!-- views/brands/edit.html -->
+<div class="col-lg-12" ui-view>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-right">
+                
+                <button type="submit" ng-click="back()" class="btn btn-warning">Go Back</button>
+                <button type="submit" ng-click="save()" class="btn btn-success">Save</button>
+                <button type="submit" ng-click="delete()" class="btn btn-danger">Delete</button>
+                <p></p>
+            </div>
+        </div>
+        <div class="row">
+            <h1>{{currentBrand().name}} Detail</h1>
+            <form>
+                <div class="form-group">
+                    <label for="brandName" class="control-label">Name</label>
+                    <input type="text" ng-model="currentBrand().name" class="form-control" id="brandName" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <label for="brandLogo" class="control-label">Logo</label>
+                            <a id="brandLogo" href="#" class="">
+                                <img ng-src="{{currentBrand().logoSrc}}" width="150" height="150" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1" style="margin-top:5px">
+                            <button ng-click="addlogo()" type="button" class="btn btn-info" title="preview">Upload new</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="brandDescription" class="control-label">Description</label>
+                    <textarea ng-model="currentBrand().description" class="form-control" id="brandDescription" rows="5"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

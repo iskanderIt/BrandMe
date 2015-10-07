@@ -1,0 +1,6 @@
+C:\Users\Alessandro\Desktop\Projects\FlyerWizard\FlyerWizard\bin\FlyerWizard.dll.config
+C:\Users\Alessandro\Desktop\Projects\FlyerWizard\FlyerWizard\bin\FlyerWizard.dll
+C:\Users\Alessandro\Desktop\Projects\FlyerWizard\FlyerWizard\bin\FlyerWizard.pdb
+C:\Users\Alessandro\Desktop\Projects\FlyerWizard\FlyerWizard\obj\Debug\FlyerWizard.csprojResolveAssemblyReference.cache
+C:\Users\Alessandro\Desktop\Projects\FlyerWizard\FlyerWizard\obj\Debug\FlyerWizard.dll
+C:\Users\Alessandro\Desktop\Projects\FlyerWizard\FlyerWizard\obj\Debug\FlyerWizard.pdb

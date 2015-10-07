@@ -1,0 +1,38 @@
+﻿<!-- views/user/edit.html -->
+<div class="col-lg-12" ui-view>
+    <div class="container-fluid">
+        <form>
+            <div class="form-group">
+                <label for="userEmail">User Id</label>
+                <input type="text" ng-disabled="true" class="form-control" id="userEmail" placeholder="Enter email" ng-model="user.id" />
+            </div>
+            <div class="form-group">
+                <label for="userEmail">Email address</label>
+                <input type="email" ng-disabled="true" class="form-control" id="userEmail" placeholder="Enter email" ng-model="user.username" />
+            </div>
+            <div class="form-group">
+                <label for="userKey">Password</label>
+                <input type="password" class="form-control" id="userKey" placeholder="Password" ng-model="user.password" />
+            </div>
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" placeholder="Username" ng-model="user.alias" />
+            </div>
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" class="form-control" id="companyName" placeholder="Company Name" ng-model="user.companyname" />
+            </div>
+            <div class="form-group">
+                <label for="companyAddress">Company Address</label>
+                <input type="text" class="form-control" id="companyAddress" placeholder="Company Address" ng-model="user.companyaddress" />
+            </div>
+            <div class="form-group">
+                <label for="companyVAT">Company VAT</label>
+                <input type="text" class="form-control" id="companyVAT" placeholder="Company VAT" ng-model="user.companyvat" />
+            </div>
+            <div class="form-group">
+                <button ng-click="save(user)" class="btn btn-success">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

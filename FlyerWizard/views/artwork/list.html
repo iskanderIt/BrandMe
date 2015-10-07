@@ -1,0 +1,47 @@
+﻿<!-- views/artwork/list.html -->
+<div class="col-lg-12" ui-view>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-right">
+                <button ng-click="back(brandId)" type="button" class="btn btn-warning" title="Go Back to List">Go Back</button>
+                <button ng-click="edit()" type="button" class="btn btn-success" title="Make New Artwork">Make New</button>
+                <p></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading text-right">
+
+                    </div>
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Author</th>
+                                <th>Type</th>
+                                <th>Last Update</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="w in artworks">
+                                <td><a ui-sref="artwork.edit({pid:brandId,id:w.id})">{{w.name}}</a></td>
+                                <td>{{w.author}}</td>
+                                <td>{{w.type.name}} ({{w.type.width}}x{{w.type.height}})</td>
+                                <td>{{w.lastupdate}}</td>
+                                <td class="text-right">
+                                    <a ng-click="preview(w.id)" class="btn btn-primary" title="preview"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                    <a ng-click="edit(w.id)" class="btn btn-warning" title="edit"><i class="glyphicon glyphicon-cog"></i></a>
+                                    <a ng-click="delete(w.id)" class="btn btn-danger"  title="delete"><i class="glyphicon glyphicon-trash"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
